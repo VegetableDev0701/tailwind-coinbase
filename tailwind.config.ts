@@ -17,6 +17,9 @@ const config: Config = {
       colors: {
         'u-gray': 'rgb(138, 145, 158)',
         'u-black': '#0a0b0d'
+      },
+      animation: {
+        'spin-fast': 'spin 0.5s linear infinite',
       }
     },
   },
