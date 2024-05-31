@@ -17,7 +17,6 @@ export default function Home() {
         </div>
         <div className="ctw-pb-[40px] ctw-flex">
           <OtpInput
-                className=""
                 value={otp}
                 onChange={setOtp}
                 numInputs={6}

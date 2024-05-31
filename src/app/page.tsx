@@ -2,9 +2,11 @@
 import Image from "next/image";
 import '@/css/first/main.css';
 import { useEffect, useState } from "react";
-import * as _ from '@/const';
+
+const MAIL_INPUT = 1;
+const PASS_INPUT = 2;
 export default function Home() {
-  const [logState, setLogState] = useState(_.MAIL_INPUT); 
+  const [logState, setLogState] = useState(MAIL_INPUT); 
   return (
     <main className="ctw-flex ctw-flex-col ctw-items-center ctw-justify-between ctw-pt-[80px]">
       <div className="sm:ctw-w-full md:ctw-w-[448px] ctw-border-solid ctw-border-[1px]  ctw-rounded-[18px] ctw-border-gray-500 ctw-p-[40px] ctw-pb-[24px] ctw-mb-[40px]">
@@ -17,7 +19,7 @@ export default function Home() {
         </div>
         <div>
           {
-            logState == _.MAIL_INPUT && (
+            logState == MAIL_INPUT && (
               <div className="ctw-flex ctw-flex-col">
                 <label className="ctw-color-white ctw-py-[4px]">Email</label>
                 <input className="ctw-w-full ctw-h-[60px] ctw-px-[20px] ctw-outline-none ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-gray-500 active:ctw-bg-gray-700 ctw-bg-u-black focus:ctw-border-[2px] focus:ctw-border-blue-600 focus:ctw-border-solid" placeholder="Your email address" type="email"/>
@@ -25,7 +27,7 @@ export default function Home() {
             )
           }
           {
-            logState == _.PASS_INPUT && (
+            logState == PASS_INPUT && (
               <>
                 <div className="ctw-flex ctw-flex-col">
                   <button className="ctw-flex ctw-items-center ctw-w-full ctw-h-[60px] ctw-px-[20px] ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-gray-500 active:ctw-bg-gray-700 ctw-bg-u-black ctw-text-left">
@@ -49,11 +51,11 @@ export default function Home() {
           
           <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-pt-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
             <button className="ctw-w-full ctw-h-full  ctw-text-black ctw-font-semibold ctw-bg-blue-600 ctw-rounded-full hover:ctw-bg-blue-400" 
-              onClick={(e) => { e.preventDefault(); setLogState(_.PASS_INPUT);}}
+              onClick={(e) => { e.preventDefault(); setLogState(PASS_INPUT);}}
             >Continue</button>
           </div>
           {
-            logState == _.MAIL_INPUT && (
+            logState == MAIL_INPUT && (
               <>
                 <div className="ctw-flex ctw-flex-col ctw-pt-[16px] ctw-justify-between ctw-items-center ctw-px-[20px]">
                   <span className="ctw-w-full ctw-h-[1px] ctw-bg-gray-700"></span>
@@ -69,7 +71,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="ctw-px-[20px] ctw-mt-[10px] ctw-text-center">
-                    <p className="ctw-text-white ">Don't have an account? <span className="ctw-text-blue-700">Sign Up</span></p>
+                    <p className="ctw-text-white">Don&apos;t have an account? <span className="ctw-text-blue-700">Sign Up</span></p>
                     <p className="ctw-text-blue-700">Sign in to a business account</p>
                     <p className="ctw-text-blue-700">Privacy policy</p>
                   </div>
