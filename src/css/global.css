@@ -171,3 +171,7 @@
     font-weight: var(--headline-font-weight);
     font-family: var(--headline-font-family);
 }
+
+.cds-body-bvviwwo {
+    font-family: var(--body-font-family);
+}
