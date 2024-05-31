@@ -164,3 +164,10 @@
 .cds-legal-111 {
     font-family: var(--legal-font-family)
 }
+
+.cds-headline-hb7l4gg {
+    font-size: var(--headline-font-size);
+    line-height: var(--headline-line-height);
+    font-weight: var(--headline-font-weight);
+    font-family: var(--headline-font-family);
+}

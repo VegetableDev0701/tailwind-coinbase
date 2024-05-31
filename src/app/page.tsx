@@ -2,11 +2,18 @@
 import Image from "next/image";
 import '@/css/global.css';
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUser, faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
+library.add(faUser, faEyeSlash, faEye)
+
 
 const MAIL_INPUT = 1;
 const PASS_INPUT = 2;
+const PASS_EYE = false;
 export default function Home() {
   const [logState, setLogState] = useState(MAIL_INPUT); 
+  const [passEye, setPassEye] = useState(PASS_EYE);
   return (
     <main className="ctw-flex ctw-flex-col ctw-items-center ctw-justify-between ctw-pt-[80px]">
       <div className="ctw-w-[448px] ctw-border-solid ctw-border-[1px]  ctw-rounded-[18px] ctw-border-[rgba(138,145,158,0.2)] ctw-p-[40px] ctw-pb-[24px] ctw-mb-[40px]">
@@ -35,30 +42,47 @@ export default function Home() {
             logState == PASS_INPUT && (
               <>
                 <div className="ctw-flex ctw-flex-col">
-                  <button className="ctw-flex ctw-items-center ctw-w-full ctw-h-[60px] ctw-px-[20px] ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-gray-500 active:ctw-bg-gray-700 ctw-bg-u-black ctw-text-left">
-                    <div className="ctw-w-[24px] ctw-h-[24px] ctw-mr-[10px] ctw-border-2 ctw-rounded-full ctw-border-solid ctw-border-white">
-                      <span className="fa-sharp fa-solid fa-user "></span>
+                  <button className="ctw-flex ctw-items-center ctw-w-full ctw-text-white ctw-text-[16px] ctw-font-semibold ctw-leading-[24px] cds-headline-hb7l4gg ctw-h-[60px] ctw-px-[20px] ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-gray-500 active:ctw-bg-gray-700 ctw-bg-u-black ctw-text-left">
+                    <div className="ctw-w-[28px] ctw-h-[28px] ctw-mr-[10px] ctw-border-2 ctw-rounded-full ctw-border-solid ctw-border-white ctw-text-center">
+                      <FontAwesomeIcon className='ctw-p-1 ctw-text-[#808080] ctw-text-[13px] ctw-text-white' icon="fa-solid fa-user " />
                     </div>
-                    Test Mail
+                    a@a.com
                   </button>
                 </div>
-                <div className="ctw-flex ctw-flex-col">
-                  <label className="ctw-color-white ctw-py-[4px]">Password</label>
-                  <div className="ctw-flex ctw-w-full ctw-h-[60px] ctw-px-[10px] ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-gray-500 active:ctw-bg-gray-700 ctw-bg-u-black focus:ctw-border-[2px] focus:ctw-border-blue-600 focus:ctw-border-solid">
-                    <input className="ctw-outline-none ctw-w-full ctw-bg-transparent" type="email"/>
-                    <span className="fa-sharp fa-solid fa-eye-slash ctw-leading-[60px] ctw-text-gray-700">a</span>
+                <div className="ctw-flex ctw-flex-col ctw-mt-[20px]">
+                  <label className="ctw-text-white ctw-text-[14px] ctw-leading-[20px] ctw-font-semibold ctw-py-[4px]">Password</label>
+                  <div className=" ctw-mt-[4px] ctw-flex ctw-items-center">
+                    <input className="ctw-w-full ctw-px-[20px] ctw-text-white  ctw-h-[56px]  ctw-outline-none ctw-rounded-[8px] ctw-border-[1px] ctw-border-solid ctw-border-[rgb(118,118,118)] ctw-bg-u-black hover:ctw-bg-[rgba(15,16,18,0.98)] active:ctw-bg-[#1E1F20]  focus:ctw-border-[2px] focus:ctw-border-blue-600 focus:ctw-border-solid"
+                      type={passEye ? 'password' : 'text'}
+                    />
+                    <FontAwesomeIcon className='ctw-p-1 ctw-ml-[-30px] ctw-text-[#808080] ctw-text-[13px] ctw-text-white' 
+                    onClick={() => setPassEye(!passEye) }
+                    icon={`fa-solid ${ passEye ? 'fa-eye-slash':'fa-eye'}`}/>
                   </div>
-                  <p className="ctw-text-blue-700 ctw-my-[16px]">Forgot password?</p>
+                  <p className="ctw-text-[rgb(55,115,245)] ctw-my-[16px]">Forgot password?</p>
                 </div>
               </>
             )
           }
-          
-          <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-mt-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
-            <button className="ctw-w-full ctw-h-[56px] ctw-bg-[#3773F5] ctw-text-black ctw-font-semibold ctw-bg-blue-600 ctw-rounded-full hover:ctw-bg-[#477EF6] ctw-text-[#0a0b0d]" 
-              onClick={(e) => { e.preventDefault(); setLogState(PASS_INPUT);}}
-            >Continue</button>
-          </div>
+
+          {
+            logState == MAIL_INPUT && (
+              <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-mt-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
+                <button className="ctw-w-full ctw-h-[56px] ctw-bg-[#3773F5] ctw-text-black ctw-font-semibold ctw-rounded-full hover:ctw-bg-[#477EF6] ctw-text-[#0a0b0d]" 
+                  onClick={(e) => { e.preventDefault(); setLogState(PASS_INPUT);}}
+                >Continue</button>
+              </div>
+            )
+          }
+          {
+            logState == PASS_INPUT && (
+              <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-my-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
+                <button className="ctw-w-full ctw-h-[56px] ctw-bg-[#3773F5] ctw-text-black ctw-font-semibold ctw-rounded-full hover:ctw-bg-[#477EF6] ctw-text-[#0a0b0d]" 
+                  onClick={(e) => { e.preventDefault(); setLogState(PASS_INPUT);}}
+                >Continue</button>
+              </div>
+            )
+          }
           {
             logState == MAIL_INPUT && (
               <>
