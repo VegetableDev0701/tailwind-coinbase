@@ -1,0 +1,26 @@
+@import './lg.css';
+@import './md.css';
+@import './sm.css';
+
+* {
+	color: white;
+}
+
+.login-cotainer {
+	width: 448px;
+	border-width: 1px;
+	border-color: rgba(138, 145, 158, 0.2);
+	border-radius: 18px;
+}
+
+.mail-input {
+	border-color: rgb(118, 118, 118);
+	border-width: 1px;
+	border-radius: 8px;
+	background-color: var(--background-color);
+}
+
+
+.mail-input:active {
+	border-color: red;
+}
