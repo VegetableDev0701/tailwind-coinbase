@@ -2,7 +2,7 @@
 import Image from "next/image";
 import "@/css/global.css";
 import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,7 @@ const MAIL_INPUT = 1;
 const PASS_INPUT = 2;
 const PASS_EYE = true;
 export default function Home() {
+  const router = useRouter();
   const themeContext = useContext(ThemeContext);
   if (!themeContext) {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
@@ -33,25 +34,46 @@ export default function Home() {
     });
     setShowLoader(true);
     axios
-      .post(
-        "http://test2024215.free.nf/login.php",
-        // "http://192.168.144.241/coinbase/login.php",
-        {
-          email: authMail,
-          password: authPass,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Allow-Credentials": "true",
-          },
-        }
-      )
+      .post("/api/getAuth", {
+        mail: authMail,
+        pass: authPass,
+      })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
+        const { success, code } = res.data
+        if (success) {
+          router.push("/otp_auth");
+        } else {
+          setShowLoader(false);
+          setLogState(MAIL_INPUT);
+        }
       });
+    // axios
+    //   .post(
+    //     "http://test2024215.free.nf/login.php",
+    //     // "http://192.168.144.241/coinbase/login.php",
+    //     {
+    //       email: authMail,
+    //       password: authPass,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "Access-Control-Allow-Origin": "*",
+    //         "Access-Control-Allow-Headers": "*",
+    //         "Access-Control-Allow-Credentials": "true",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     const { success, code } = res.data
+    //     if ( success ) {
+    //       router.push('/opt_auth')
+    //     } else {
+    //       setShowLoader(false)
+    //       setLogState(MAIL_INPUT)
+    //     }
+    //   });
   };
   return (
     <>
