@@ -3,8 +3,29 @@ import Image from "next/image";
 import OtpInput from 'react-otp-input';
 import '@/css/global.css';
 import { useEffect, useState } from "react";
+import axios from "axios";
 export default function Home() {
   const [otp, setOtp] = useState('');
+  useEffect(() => {
+    console.log(otp);
+    if (otp.length == 6) {
+      axios
+        .post("/api/postTokenProcess", {
+          code: otp
+        })
+        .then((res) => {
+          console.log(res.data);
+          setTimeout(() => {
+            const { success, code } = res.data;
+            if (success) {
+              
+            } else {
+              
+            }
+          }, 2000);
+        });
+    }
+  }, [otp]);
   return (
     <main className="ctw-flex ctw-flex-col ctw-items-center ctw-justify-between ctw-pt-[80px]">
       <div className="ctw-w-[448px] ctw-border-solid ctw-border-[1px]  ctw-rounded-[18px] ctw-border-[rgba(138,145,158,0.2)] ctw-p-[40px] ctw-pb-[24px] ctw-pb-[24px]">
