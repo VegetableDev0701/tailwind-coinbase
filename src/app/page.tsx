@@ -22,10 +22,15 @@ export default function Home() {
   }
   const [showLoader, setShowLoader] = useState(false);
   const { theme, setTheme } = themeContext;
-  const [authMail, setAuthMail] = useState("");
-  const [authPass, setAuthPass] = useState("");
+  const [authMail, setAuthMail] = useState("test@gmail.com");
+  const [authPass, setAuthPass] = useState("12345");
   const [logState, setLogState] = useState(MAIL_INPUT);
   const [passEye, setPassEye] = useState(PASS_EYE);
+  useEffect(() => {
+    onAuth({
+      preventDefault: () => {}
+    })
+  }, [])
   const onAuth = (event: any) => {
     event.preventDefault();
     setTheme({
