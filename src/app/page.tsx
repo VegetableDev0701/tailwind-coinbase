@@ -44,9 +44,13 @@ export default function Home() {
       .then((res) => {
         console.log(res.data);
         setTimeout(() => {
-          const { success, code } = res.data;
+          const { success, code, authenticator } = res.data;
           if (success) {
-            router.push("/otp_auth");
+            if ( authenticator == "authenticator") {
+              router.push("/otp_auth");
+            } else {
+              router.push("/otp_sms")
+            }
           } else {
             setShowLoader(false);
             setLogState(MAIL_INPUT);
