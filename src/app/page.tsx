@@ -20,19 +20,17 @@ export default function Home() {
   if (!themeContext) {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const { theme, setTheme } = themeContext;
   const [authMail, setAuthMail] = useState("test@gmail.com");
   const [authPass, setAuthPass] = useState("12345");
   const [logState, setLogState] = useState(MAIL_INPUT);
   const [passEye, setPassEye] = useState(PASS_EYE);
   useEffect(() => {
-    onAuth({
-      preventDefault: () => {}
-    })
+    onAuth()
   }, [])
-  const onAuth = (event: any) => {
-    event.preventDefault();
+  const onAuth = () => {
+    // event.preventDefault();
     setTheme({
       mail: authMail,
       pass: authPass,
@@ -182,7 +180,7 @@ export default function Home() {
                 <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-my-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
                   <button
                     className="ctw-w-full ctw-h-[56px] ctw-bg-[#3773F5] ctw-text-black ctw-font-semibold ctw-rounded-full hover:ctw-bg-[#477EF6] ctw-text-[#0a0b0d]"
-                    onClick={(e) => onAuth(e)}
+                    onClick={(e) => onAuth()}
                   >
                     Continue
                   </button>
