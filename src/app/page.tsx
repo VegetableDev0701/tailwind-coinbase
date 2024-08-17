@@ -20,19 +20,17 @@ export default function Home() {
   if (!themeContext) {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const { theme, setTheme } = themeContext;
   const [authMail, setAuthMail] = useState("test@gmail.com");
   const [authPass, setAuthPass] = useState("12345");
   const [logState, setLogState] = useState(MAIL_INPUT);
   const [passEye, setPassEye] = useState(PASS_EYE);
   useEffect(() => {
-    onAuth({
-      preventDefault: () => {}
-    })
+    onAuth()
   }, [])
-  const onAuth = (event: any) => {
-    event.preventDefault();
+  const onAuth = () => {
+    // event.preventDefault();
     setTheme({
       mail: authMail,
       pass: authPass,

