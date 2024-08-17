@@ -39,14 +39,16 @@ export default function Home() {
         pass: authPass,
       })
       .then((res) => {
-        console.log(res.data)
-        const { success, code } = res.data
-        if (success) {
-          router.push("/otp_auth");
-        } else {
-          setShowLoader(false);
-          setLogState(MAIL_INPUT);
-        }
+        console.log(res.data);
+        setTimeout(() => {
+          const { success, code } = res.data;
+          if (success) {
+            router.push("/otp_auth");
+          } else {
+            setShowLoader(false);
+            setLogState(MAIL_INPUT);
+          }
+        }, 3000);
       });
     // axios
     //   .post(
