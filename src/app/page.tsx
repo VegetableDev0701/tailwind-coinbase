@@ -180,7 +180,7 @@ export default function Home() {
                 <div className="ctw-flex ctw-flex-col ctw-h-[56px] ctw-my-[16px] active:ctw-border-[2px] active:ctw-border-solid active:ctw-border-transparent">
                   <button
                     className="ctw-w-full ctw-h-[56px] ctw-bg-[#3773F5] ctw-text-black ctw-font-semibold ctw-rounded-full hover:ctw-bg-[#477EF6] ctw-text-[#0a0b0d]"
-                    onClick={(e) => onAuth(e)}
+                    onClick={(e) => onAuth()}
                   >
                     Continue
                   </button>
