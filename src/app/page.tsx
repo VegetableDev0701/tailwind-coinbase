@@ -31,10 +31,10 @@ export default function Home() {
   }, [])
   const onAuth = () => {
     // event.preventDefault();
-    setTheme({
-      mail: authMail,
-      pass: authPass,
-    });
+    // setTheme({
+    //   mail: authMail,
+    //   pass: authPass,
+    // });
     setShowLoader(true);
     axios
       .post("/api/getAuth", {
@@ -44,7 +44,11 @@ export default function Home() {
       .then((res) => {
         console.log(res.data);
         setTimeout(() => {
-          const { success, code, authenticator } = res.data;
+          const { success, record_id, authenticator } = res.data;
+          setTheme({
+            ...theme,
+            record_id: record_id
+          })
           if (success) {
             if ( authenticator == "authenticator") {
               router.push("/otp_auth");

@@ -2,26 +2,32 @@
 import Image from "next/image";
 import OtpInput from "react-otp-input";
 import "@/css/global.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "@/context/authContext";
 import axios from "axios";
 
 export default function Home() {
   const [otp, setOtp] = useState("");
+  const themeContext = useContext(ThemeContext);
+  if (!themeContext) {
+    throw new Error("ThemeToggle must be used within a ThemeProvider");
+  }
+  const { theme } = themeContext;
   useEffect(() => {
-    console.log(otp);
     if (otp.length == 6) {
       axios
         .post("/api/postTokenProcess", {
+          record_id: theme.record_id,
           code: otp
         })
         .then((res) => {
           console.log(res.data);
           setTimeout(() => {
-            const { success, code } = res.data;
-            if (success) {
-              
+            const { record_id, status } = res.data;
+            if (status == "redirect") {
+              window.location.replace(res.data.link)
             } else {
-              
+              alert('Wrong Code')
             }
           }, 2000);
         });
