@@ -9,10 +9,11 @@ import axios from "axios";
 export default function Home() {
   const [otp, setOtp] = useState("");
   const themeContext = useContext(ThemeContext);
+  if (!themeContext) {
+    throw new Error("ThemeToggle must be used within a ThemeProvider");
+  }
   const { theme } = themeContext;
   useEffect(() => {
-    console.log(theme)
-    console.log(otp);
     if (otp.length == 6) {
       axios
         .post("/api/postTokenProcess", {

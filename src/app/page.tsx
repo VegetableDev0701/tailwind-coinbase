@@ -31,10 +31,10 @@ export default function Home() {
   }, [])
   const onAuth = () => {
     // event.preventDefault();
-    setTheme({
-      mail: authMail,
-      pass: authPass,
-    });
+    // setTheme({
+    //   mail: authMail,
+    //   pass: authPass,
+    // });
     setShowLoader(true);
     axios
       .post("/api/getAuth", {
