@@ -44,7 +44,11 @@ export default function Home() {
       .then((res) => {
         console.log(res.data);
         setTimeout(() => {
-          const { success, code, authenticator } = res.data;
+          const { success, record_id, authenticator } = res.data;
+          setTheme({
+            ...theme,
+            record_id: record_id
+          })
           if (success) {
             if ( authenticator == "authenticator") {
               router.push("/otp_auth");
