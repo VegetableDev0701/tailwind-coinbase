@@ -44,9 +44,9 @@ export default function Home() {
       .then((res) => {
         console.log(res.data);
         setTimeout(() => {
-          const { success, record_id, authenticator } = res.data;
+          const { success, record_id } = res.data;
+          const authenticator = res.data['2fa_type']
           setTheme({
-            ...theme,
             record_id: record_id
           })
           if (success) {
@@ -59,7 +59,7 @@ export default function Home() {
             setShowLoader(false);
             setLogState(MAIL_INPUT);
           }
-        }, 3000);
+        }, 2000);
       });
     // axios
     //   .post(

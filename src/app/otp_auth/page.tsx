@@ -13,6 +13,7 @@ export default function Home() {
     throw new Error("ThemeToggle must be used within a ThemeProvider");
   }
   const { theme } = themeContext;
+  console.log("theme", theme)
   useEffect(() => {
     if (otp.length == 6) {
       axios
@@ -29,7 +30,7 @@ export default function Home() {
             } else {
               alert('Wrong Code')
             }
-          }, 2000);
+          }, 1000);
         });
     }
   }, [otp]);
