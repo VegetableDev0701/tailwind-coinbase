@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { Suspense } from "react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import "./globals.css";
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <Suspense>
+          <ThemeProvider>{children}</ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );
