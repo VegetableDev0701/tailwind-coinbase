@@ -17,9 +17,9 @@ export default function Home() {
 
   useEffect(() => {
     setEFlag(false);
-    if (otp.length == 6) {
+    if (otp.length == 7) {
       axios
-        .post("/api/postTokenProcess", {
+        .post("/api/postTokenSms", {
           record_id: theme.record_id,
           code: otp,
         })
@@ -68,9 +68,9 @@ export default function Home() {
           <OtpInput
             value={otp}
             onChange={setOtp}
-            numInputs={6}
-            containerStyle="ctw-grid ctw-grid-cols-6 ctw-gap-2"
-            inputStyle="active:ctw-bg-gray-800 active:ctw-border-blue-700 active:ctw-border-[1px] focus:ctw-border-blue-700 focus:ctw-border-[2px] active:ctw-border-[2px] ctw-text-white ctw-text-center ctw-rounded-[8px] ctw-w-[48px] ctw-h-[55px] ctw-outline-none ctw-border-[1px] ctw-bg-u-black ctw-border-solid ctw-border-[rgba(138,145,158,0.68)]"
+            numInputs={7}
+            containerStyle="ctw-grid ctw-grid-cols-6 ctw-gap-1"
+            inputStyle="active:ctw-bg-gray-800 active:ctw-border-blue-700 active:ctw-border-[1px] focus:ctw-border-blue-700 focus:ctw-border-[2px] active:ctw-border-[2px] ctw-text-white ctw-text-center ctw-rounded-[8px] ctw-w-[45px] ctw-h-[55px] ctw-outline-none ctw-border-[1px] ctw-bg-u-black ctw-border-solid ctw-border-[rgba(138,145,158,0.68)]"
             renderSeparator={<span></span>}
             renderInput={(props) => <input {...props} />}
             skipDefaultStyles={true}
