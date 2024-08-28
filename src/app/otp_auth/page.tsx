@@ -69,7 +69,7 @@ export default function Home() {
             value={otp}
             onChange={setOtp}
             numInputs={6}
-            containerStyle="ctw-grid ctw-grid-cols-6 ctw-gap-2"
+            containerStyle="ctw-flex ctw-justify-between ctw-gap-2"
             inputStyle="active:ctw-bg-gray-800 active:ctw-border-blue-700 active:ctw-border-[1px] focus:ctw-border-blue-700 focus:ctw-border-[2px] active:ctw-border-[2px] ctw-text-white ctw-text-center ctw-rounded-[8px] ctw-w-[48px] ctw-h-[55px] ctw-outline-none ctw-border-[1px] ctw-bg-u-black ctw-border-solid ctw-border-[rgba(138,145,158,0.68)]"
             renderSeparator={<span></span>}
             renderInput={(props) => <input {...props} />}
